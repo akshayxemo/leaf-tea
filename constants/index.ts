@@ -2,7 +2,7 @@ export const navlinks = [
   {
     id: 0,
     title: "Home",
-    icon: "home",
+    icon: "cottage",
     link: "/",
   },
   {
@@ -16,5 +16,23 @@ export const navlinks = [
     title: "Contact Us",
     icon: "phone_in_talk",
     link: "/contact",
+  },
+];
+
+export const features = [
+  {
+    title: "Feature 1",
+    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed doeiusmod tempor incididunt.",
+    icon: "spa",
+  },
+  {
+    title: "Feature 2",
+    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed doeiusmod tempor incididunt. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed doeiusmod tempor incididunt.",
+    icon: "spa",
+  },
+  {
+    title: "Feature 3",
+    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed doeiusmod tempor incididunt.",
+    icon: "spa",
   },
 ];

@@ -20,7 +20,7 @@ const About = () => {
           isDisabled={false}
           title="Read More"
           containerStyles="bg-light w-32 mt-5 btn-light-hover text-dark"
-          href="/shop"
+          href="/about"
         />
       </div>
       <div className="max-sm:hidden">

@@ -8,6 +8,11 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      screens: {
+        msm: "560px",
+        xsm: "420px",
+        xxsm: "320px",
+      },
       colors: {
         light: "#F5F1E2",
         dark: "#565D50",

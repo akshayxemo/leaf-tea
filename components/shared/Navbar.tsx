@@ -28,17 +28,6 @@ const Navbar = () => {
     };
   }, []);
   return (
-    // <header
-    //   className={`${
-    //     path === "/"
-    //       ? "fixed border-white/35 text-white backdrop-blur"
-    //       : "bg-dark-600 border-dark text-light"
-    //   } top-0 left-0 border-b-[0.5px] z-50 w-full transition-colors duration-500 ${
-    //     scrollColor
-    //       ? "bg-dark-600 border-dark text-light fixed"
-    //       : "bg-dark-600/10"
-    //   }`}
-    // >
     <header
       className={`${
         scrollColor
@@ -63,13 +52,17 @@ const Navbar = () => {
             </span>
             Leaf Tea
           </h1>
+          {/* <CottageOutlinedIcon className="" style={{ fontSize: "30px" }} /> */}
           {/*.................... Navs */}
           <div className="flex gap-6 justify-center items-center last:mr-4">
             {navlinks.map((nav) => {
               return (
                 <div key={nav.id}>
                   <Link href={nav.link} className="nav-items group">
-                    <span className="material-symbols-outlined group-hover:scale-110 transition ease-in-out delay-150">
+                    <span
+                      className="material-symbols-outlined group-hover:scale-110 transition ease-in-out delay-150"
+                      // style={{ fontSize: "30px" }}
+                    >
                       {nav.icon}
                     </span>
                     <span>{nav.title}</span>

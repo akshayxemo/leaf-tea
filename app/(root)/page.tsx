@@ -1,4 +1,5 @@
 import About from "@/components/ui/home/About";
+import Features from "@/components/ui/home/Features";
 import Hero from "@/components/ui/home/Hero";
 
 export default function Home() {
@@ -6,6 +7,7 @@ export default function Home() {
     <div className="">
       <Hero />
       <About />
+      <Features />
     </div>
   );
 }
