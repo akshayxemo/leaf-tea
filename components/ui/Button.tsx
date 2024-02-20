@@ -16,9 +16,9 @@ const Button = ({
 }: ButtonProps) => {
   const buttonContent = (
     <>
-      <span className={`flex-1 ${textStyles}`}>{title}</span>
+      <span className={`${textStyles}`}>{title}</span>
       {icon && (
-        <div className="relative w-6 h-6">
+        <div className="relative">
           {/* <Image src={icon} alt="arrow_left" fill className="object-contain" /> */}
           <span className="material-symbols-outlined">{icon}</span>
         </div>
@@ -32,7 +32,7 @@ const Button = ({
         <button
           disabled={isDisabled}
           type={btnType || "button"}
-          className={`custom-btn ${containerStyles}`}
+          className={`custom-btn flex items-center gap-2 justify-center ${containerStyles}`}
         >
           {buttonContent}
         </button>
@@ -43,7 +43,7 @@ const Button = ({
     <button
       disabled={isDisabled}
       type={btnType || "button"}
-      className={`custom-btn ${containerStyles}`}
+      className={`custom-btn flex items-center gap-2 justify-center ${containerStyles}`}
       onClick={handleClick}
     >
       {buttonContent}
