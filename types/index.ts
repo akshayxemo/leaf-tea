@@ -18,3 +18,15 @@ export interface Navlinks {
   icon: string;
   link: Url;
 }
+
+export interface ProductParams {
+  name: string;
+  description: string;
+  ingredients: string[];
+  videoUrl: string;
+  stock: number;
+  price: number;
+  discount: number;
+  image: string | null; // Use File type for image input
+  overallRating: number;
+}

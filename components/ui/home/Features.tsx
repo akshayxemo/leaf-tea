@@ -4,8 +4,8 @@ import { features } from "@/constants";
 
 const Features = () => {
   return (
-    <div className="py-32 overflow-hidden bg-light w-full relative -z-[1]">
-      <div className="container flex flex-row justify-between max-lg:flex-col">
+    <div className="py-24 overflow-hidden bg-light w-full relative -z-[1]">
+      <div className="container flex flex-row justify-between max-lg:flex-col items-center">
         <div className="max-w-[60%] max-lg:max-w-[100%] pr-3 max-sm:pr-0">
           {features.map((feat) => {
             return (
@@ -16,7 +16,7 @@ const Features = () => {
                 <div className="">
                   <span
                     className="material-symbols-outlined group-hover:scale-110 transition ease-in-out delay-150 rounded-full aspect-square border-2 border-lime-600 text-light bg-lime-600"
-                    style={{ fontSize: "50px" }}
+                    style={{ fontSize: "45px" }}
                   >
                     {feat.icon}
                   </span>

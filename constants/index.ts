@@ -36,3 +36,15 @@ export const features = [
     icon: "spa",
   },
 ];
+
+export const productfields = {
+  name: "",
+  description: "",
+  ingredients: [],
+  videoUrl: "",
+  stock: 0,
+  price: 0,
+  discount: 0,
+  image: null,
+  overallRating: 0,
+};
