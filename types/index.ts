@@ -14,12 +14,13 @@ export interface ButtonProps {
 
 export interface Navlinks {
   id: Key;
-  title: String;
+  title: string;
   icon: string;
   link: Url;
 }
 
 export interface ProductParams {
+  _id?: string;
   name: string;
   description: string;
   ingredients: string[];
@@ -27,6 +28,6 @@ export interface ProductParams {
   stock: number;
   price: number;
   discount: number;
-  image: string | null; // Use File type for image input
+  image: string; // Use File type for image input
   overallRating: number;
 }

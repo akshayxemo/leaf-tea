@@ -1,12 +1,33 @@
 import Image from "next/image";
 import sample from "@/public/images/sample-product.png";
 import Button from "./Button";
-const ProductCard = () => {
+const ProductCard = ({
+  image,
+  name,
+  price,
+  discount,
+}: {
+  image: string;
+  name: string;
+  price: number;
+  discount?: number;
+}) => {
+  const discountedPrice = (p: number, d: number) => {
+    const discountPrice = (p * d) / 100;
+    const priceWithDiscount = price - discountPrice;
+    return priceWithDiscount;
+  };
   return (
     <div className="p-4 max-w-64">
-      <Image src={sample} alt="product" width={294} height={386} />
+      <Image
+        src={image}
+        alt="product"
+        width={224}
+        height={309}
+        className="object-cover xxsm:min-h-[309px] rounded-md"
+      />
 
-      <div className="flex gap-2 flex-col">
+      <div className="flex gap-2 flex-col mt-2">
         {/* .....................Rating */}
         <div className="flex gap-2 items-center">
           <div className="px-2 py-[0.35rem] bg-lime-600 rounded-md">
@@ -26,19 +47,25 @@ const ProductCard = () => {
         </div>
 
         {/* .....................Title */}
-        <h3 className="font-bold text-lg leading-[24px]">
-          High Quality Oolong Tea
-        </h3>
+        <h3 className="font-bold text-lg leading-[24px]">{name}</h3>
 
         {/* .....................Price */}
         <div className="flex gap-2 items-center">
-          <p className="text-green-500 font-bold text-lg">
-            <span className="text-gray-400 line-through font-normal text-sm">
-              ₹150
-            </span>{" "}
-            &nbsp;₹120
-          </p>
-          <p className="text-orange-500 text-xs">20% discount</p>
+          {price && discount ? (
+            <p className="text-green-500 font-bold text-lg">
+              <span className="text-gray-400 line-through font-normal text-sm">
+                ₹{price}
+              </span>{" "}
+              &nbsp;₹{discountedPrice(price, discount)}
+            </p>
+          ) : price && !discount ? (
+            <p className="text-green-500 font-bold text-lg">₹{price}</p>
+          ) : (
+            "price not set"
+          )}
+          {discount && (
+            <p className="text-orange-500 text-xs">{discount}% discount</p>
+          )}
         </div>
 
         {/* .....................Add to cart */}

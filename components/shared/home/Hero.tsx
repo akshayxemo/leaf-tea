@@ -1,4 +1,4 @@
-import Button from "../Button";
+import Button from "../../ui/Button";
 const Hero = () => {
   return (
     <div className="object-cover bg-cover relative h-screen bg-hero-image flex max-sm:max-h-[700px]">

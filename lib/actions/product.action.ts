@@ -1,18 +1,20 @@
 "use server";
 
-import { productfields } from "@/constants";
 import Product from "@/models/product.model";
 import { ProductParams } from "@/types";
-import { connnectToDB } from "@/utils/dbConnection";
+import { connnectToDB } from "@/lib/database/dbConnection";
 import { handleError } from "@/utils/handleError";
-// import { productfields } from "@/constants";
+import { AddBase64unit } from "@/utils";
 
 export const createProduct = async (productfields: ProductParams) => {
   try {
     await connnectToDB();
-    console.log(productfields);
+
     const newProduct = new Product(productfields);
-    await newProduct.save();
+    const result = await newProduct.save();
+    // console.log(result);
+    // console.log(result.image.length);
+    return AddBase64unit(result.image);
   } catch (error) {
     console.log(error);
     handleError(error);
@@ -23,7 +25,13 @@ export const getProducts = async () => {
   try {
     await connnectToDB();
     const products = await Product.find({});
-    return JSON.stringify(products);
+
+    // Map over the array and convert each image buffer to Base64
+    const productsWithBase64Images = products.map((product) => {
+      return { ...product._doc, image: AddBase64unit(product.image) as string };
+    });
+    // console.log(productsWithBase64Images);
+    return JSON.stringify(productsWithBase64Images);
   } catch (error) {
     handleError(error);
   }

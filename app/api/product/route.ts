@@ -1,5 +1,5 @@
 import { NextApiRequest } from "next";
-import { connnectToDB } from "@/utils/dbConnection";
+import { connnectToDB } from "@/lib/database/dbConnection";
 import Product from "@/models/product.model";
 
 export const POST = async (req: NextApiRequest) => {

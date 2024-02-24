@@ -1,8 +1,7 @@
-import ProductCard from "@/components/ui/ProductCard";
-import About from "@/components/ui/home/About";
-import Features from "@/components/ui/home/Features";
-import Hero from "@/components/ui/home/Hero";
-import ProductFeature from "@/components/ui/home/ProductFeature";
+import About from "@/components/shared/home/About";
+import Features from "@/components/shared/home/Features";
+import Hero from "@/components/shared/home/Hero";
+import ProductFeature from "@/components/shared/home/ProductFeature";
 
 export default function Home() {
   return (
