@@ -15,6 +15,6 @@ export const convertToBuffer = (string: string) => {
 
 export const discountedPrice = (p: number, d: number) => {
   const discountPrice = (p * d) / 100;
-  const priceWithDiscount = p - discountPrice;
+  const priceWithDiscount = (p - discountPrice).toFixed(2);
   return priceWithDiscount;
 };

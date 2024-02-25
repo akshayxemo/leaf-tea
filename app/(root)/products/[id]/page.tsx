@@ -1,7 +1,6 @@
-import { Rating, RatingAndReviews } from "@/components/ui/Rating";
+import { Rates, Rating, RatingAndReviews } from "@/components/ui/Rating";
 import { getProductById } from "@/lib/actions/product.action";
 import Image from "next/image";
-import { discountedPrice } from "@/utils";
 import QuantityBtn from "@/components/ui/QuantityBtn";
 import Button from "@/components/ui/Button";
 import { ProductParams } from "@/types";
@@ -92,6 +91,31 @@ const Page = async ({ params }: { params: { id: string } }) => {
               ></iframe>
             </div>
           )}
+
+          <div>
+            <h2 className="text-xl font-bold mb-4">Rating</h2>
+            <div className="flex flex-wrap gap-8 lg:flex-row flex-col">
+              <div>
+                <h1 className="text-3xl flex gap-3 items-center">
+                  4.5{" "}
+                  <span
+                    className="material-symbols-outlined"
+                    style={{
+                      fontSize: "1.875rem",
+                      fontVariationSettings: `"FILL" 1`,
+                    }}
+                  >
+                    star_rate
+                  </span>
+                </h1>
+                <RatingAndReviews ratingCount={2000} reviewsCount={200} />
+              </div>
+
+              <div className="flex-1">
+                <Rates />
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
