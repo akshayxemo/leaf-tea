@@ -9,7 +9,7 @@ const AddProduct = () => {
   const [form, setForm] = useState<ProductParams>({
     name: "",
     description: "",
-    ingredients: [],
+    ingridients: [],
     videoUrl: "",
     stock: 0,
     price: 0,
@@ -19,6 +19,7 @@ const AddProduct = () => {
   });
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [img, setImg] = useState<string | null>();
+  const [array, setArray] = useState<string>("");
 
   //   const handleImg = (e: React.ChangeEvent<HTMLInputElement>) => {
   //     setImg(e.target.value);
@@ -27,6 +28,10 @@ const AddProduct = () => {
   const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setForm((prevdata) => ({ ...prevdata, [name]: value }));
+  };
+
+  const handleOnChangeArray = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setArray(e.target.value);
   };
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -69,6 +74,9 @@ const AddProduct = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (array) {
+      form.ingridients = array.split(", ");
+    }
     console.log(form);
     if (form.image) {
       console.log(form.image?.length);
@@ -116,6 +124,14 @@ const AddProduct = () => {
           className="border-2 flex-1"
           value={form.videoUrl}
           onChange={handleOnChange}
+        />
+        <label>Ingridients:</label>
+        <input
+          type="text"
+          name="ingridients"
+          className="border-2 flex-1"
+          value={array}
+          onChange={handleOnChangeArray}
         />
         <label>Stock :</label>
         <input

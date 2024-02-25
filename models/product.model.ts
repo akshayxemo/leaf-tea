@@ -7,9 +7,18 @@ const ProductSchema = new Schema({
   videoUrl: { type: String },
   stock: { type: Number, required: true },
   price: { type: Number, required: true },
-  discount: { type: Number },
+  discount: { type: Number, default: 0 },
   image: { type: String, required: true },
-  overallRating: { type: Number },
+  overallRating: { type: Number, default: 0 },
+  rating: [
+    {
+      userId: { type: Schema.Types.ObjectId, ref: "User" },
+      rate: { type: Number },
+      review: { type: String },
+      date: { type: Date, default: Date.now },
+      update: { type: Date, default: null },
+    },
+  ],
 });
 
 const Product = models.Product || model("Product", ProductSchema);

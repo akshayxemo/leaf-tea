@@ -9,10 +9,10 @@ import { AddBase64unit } from "@/utils";
 export const createProduct = async (productfields: ProductParams) => {
   try {
     await connnectToDB();
-
+    console.log(productfields);
     const newProduct = new Product(productfields);
     const result = await newProduct.save();
-    // console.log(result);
+    console.log(result);
     // console.log(result.image.length);
     return AddBase64unit(result.image);
   } catch (error) {
@@ -32,6 +32,21 @@ export const getProducts = async () => {
     });
     // console.log(productsWithBase64Images);
     return JSON.stringify(productsWithBase64Images);
+  } catch (error) {
+    handleError(error);
+  }
+};
+
+export const getProductById = async (id: string) => {
+  try {
+    await connnectToDB();
+    let product = await Product.findById(id);
+    product = {
+      ...product._doc,
+      image: AddBase64unit(product.image) as string,
+    };
+    // console.log(product);
+    return JSON.stringify(product);
   } catch (error) {
     handleError(error);
   }

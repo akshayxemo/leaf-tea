@@ -23,11 +23,11 @@ export interface ProductParams {
   _id?: string;
   name: string;
   description: string;
-  ingredients: string[];
-  videoUrl: string;
+  ingridients?: Array<string>;
+  videoUrl?: string;
   stock: number;
   price: number;
-  discount: number;
+  discount?: number;
   image: string; // Use File type for image input
-  overallRating: number;
+  overallRating?: number;
 }

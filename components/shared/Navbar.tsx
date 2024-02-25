@@ -11,11 +11,11 @@ const Navbar = () => {
   const path = usePathname();
 
   useEffect(() => {
-    if (window.scrollY > 300) {
+    if (window.scrollY > 2) {
       setScrollColor(true);
     }
     const handleScroll = () => {
-      if (window.scrollY > 300) {
+      if (window.scrollY > 2) {
         setScrollColor(true);
       } else {
         setScrollColor(false);
@@ -35,10 +35,10 @@ const Navbar = () => {
           : path === "/"
           ? "fixed border-white/35 text-white backdrop-blur"
           : "bg-dark-600 border-dark text-light"
-      } top-0 left-0 border-b-[0.5px] z-50 w-full transition-colors duration-500`}
+      } top-0 left-0 border-b-[0.5px] z-50 w-full transition-all duration-1000`}
     >
       <nav className="container divide-x-[0.5px] divide-white/35 flex flex-1 justify-between">
-        <div className="p-2 flex justify-between gap-4 items-center w-full">
+        <div className="p-1 flex justify-between gap-4 items-center w-full">
           {/*.................... logo */}
           {/* <Image
             src={"/images/logo-tea.png"}
@@ -52,7 +52,7 @@ const Navbar = () => {
             </span>
             Leaf Tea
           </h1>
-          {/* <CottageOutlinedIcon className="" style={{ fontSize: "30px" }} /> */}
+
           {/*.................... Navs */}
           <div className="flex gap-6 justify-center items-center last:mr-4">
             {navlinks.map((nav) => {
