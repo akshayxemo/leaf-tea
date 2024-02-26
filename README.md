@@ -1,3 +1,4 @@
+![FireShot Capture 014 - Leaf Tea - localhost](https://github.com/akshayxemo/leaf-tea/assets/83893825/4ce1a277-00ca-478d-9dac-7ca4b29713ea)
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
