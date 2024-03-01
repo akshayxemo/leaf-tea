@@ -1,7 +1,6 @@
 import { getProducts } from "@/lib/actions/product.action";
 import ProductCard from "../../ui/ProductCard";
 import { ProductParams } from "@/types";
-import Link from "next/link";
 
 const ProductFeature = async () => {
   const response = await getProducts();
@@ -18,7 +17,7 @@ const ProductFeature = async () => {
             return (
               <ProductCard
                 key={index}
-                id={product._id}
+                id={product._id as string}
                 image={product.image}
                 name={product.name}
                 price={product.price}

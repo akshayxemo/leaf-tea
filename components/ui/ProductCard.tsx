@@ -1,8 +1,11 @@
+"use client";
 import Image from "next/image";
-import sample from "@/public/images/sample-product.png";
 import { discountedPrice } from "@/utils";
 import Button from "./Button";
 import Link from "next/link";
+import { useDispatch } from "react-redux";
+import { addItem } from "@/redux/slices/cartSlice";
+
 const ProductCard = ({
   id,
   image,
@@ -10,12 +13,16 @@ const ProductCard = ({
   price,
   discount,
 }: {
-  id?: string;
+  id: string;
   image: string;
   name: string;
   price: number;
   discount?: number;
 }) => {
+  console.log("Product feature.............................");
+
+  const item = { id: id, name: name, price: price, quantity: 1 };
+  const dispatch = useDispatch();
   return (
     <div className="p-4 max-w-64">
       <Link href={`/products/${id}`}>
@@ -78,6 +85,9 @@ const ProductCard = ({
       <Button
         title="Add to Cart"
         containerStyles="w-full bg-light btn-light-hover justify-center mt-3"
+        handleClick={() => {
+          dispatch(addItem(item));
+        }}
       />
     </div>
   );

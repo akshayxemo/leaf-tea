@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { DM_Sans, DM_Serif_Text, Great_Vibes } from "next/font/google";
 import "@/styles/globals.css";
+import ReduxProvider from "@/redux/ReduxProviders";
 
 const DmSans = DM_Sans({ subsets: ["latin"], variable: "--font-dmsans" });
 const DmSerif = DM_Serif_Text({
@@ -35,7 +36,7 @@ export default function RootLayout({
         <body
           className={`${DmSans.variable} ${DmSerif.variable} ${GreatVibes.variable} font-sans`}
         >
-          {children}
+          <ReduxProvider>{children}</ReduxProvider>
         </body>
       </html>
     </>

@@ -31,3 +31,8 @@ export interface ProductParams {
   image: string; // Use File type for image input
   overallRating?: number;
 }
+
+export interface cartType {
+  id: string;
+  quantity: number;
+}
