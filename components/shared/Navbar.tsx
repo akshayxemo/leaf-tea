@@ -31,9 +31,9 @@ const Navbar = () => {
     <header
       className={`${
         scrollColor
-          ? "bg-dark-600 border-dark text-light fixed"
+          ? "absolute bg-dark-600 border-dark text-light "
           : path === "/"
-          ? "fixed border-white/35 text-white backdrop-blur"
+          ? "absolute border-white/35 text-white backdrop-blur"
           : "bg-dark-600 border-dark text-light"
       } top-0 left-0 border-b-[0.5px] z-50 w-full transition-all duration-1000`}
     >

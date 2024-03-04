@@ -34,7 +34,7 @@ const Page = async ({ params }: { params: { id: string } }) => {
         </div>
       </div>
       <div className="px-4 py-12 flex-1 max-md:w-full">
-        <div className="grid grid-cols-5 grid-rows-4">
+        <div className="grid grid-cols-5 grid-rows-3">
           {/* ........row-1 */}
           <div className="col-span-4 text-3xl font-bold text-black">
             {product.name}
@@ -56,13 +56,19 @@ const Page = async ({ params }: { params: { id: string } }) => {
 
           {/* ........row-3 */}
           <div className="col-span-5">
-            <PriceDiscount price={product.price} discount={product.discount} />
+            <PriceDiscount
+              price={product.price}
+              discount={product.discount}
+              priceStyle="text-2xl"
+              prevPriceStyle="text-base"
+              discountPriceStyle="text-sm"
+            />
           </div>
 
           {/* ........row-4 */}
-          <div className="col-span-5">
+          {/* <div className="col-span-5">
             <QuantityBtn />
-          </div>
+          </div> */}
         </div>
 
         <div className="mt-8 pt-5 border-t-2 flex flex-col gap-10">

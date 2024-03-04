@@ -1,44 +1,55 @@
-"use client";
-
-import { useState } from "react";
 import Button from "./Button";
 
-const QuantityBtn = () => {
-  const [quantity, setQuantity] = useState(1);
-  const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newValue = Number(e.target.value);
-    setQuantity(newValue);
-  };
-
-  const add = () => {
-    setQuantity(quantity + 1);
-  };
-
-  const sub = () => {
-    setQuantity(quantity == 1 ? 1 : quantity - 1);
-  };
-
+const QuantityBtn = ({
+  quantity,
+  increment,
+  decrement,
+  stock,
+  max,
+}: {
+  quantity: number;
+  increment: Function;
+  decrement: Function;
+  stock: number;
+  max: number;
+}) => {
   return (
     <div className="flex gap-3 items-center flex-wrap">
       <p>Quantity :</p>
       <div className="flex gap-2 items-center">
-        <Button
-          title="-"
-          containerStyles="border-2 text-lg font-semibold"
-          handleClick={sub}
-        />
-        <input
-          type="number"
-          className="border-2 text-lg font-semibold py-2 px-4 text-center rounded-md max-w-20"
-          value={quantity === 0 ? "" : quantity}
-          name="quantity"
-          onChange={handleOnChange}
-        />
-        <Button
-          title="+"
-          containerStyles="border-2 text-lg font-semibold"
-          handleClick={add}
-        />
+        {quantity == 1 ? (
+          <Button
+            title="-"
+            containerStyles="border-2 text-gray-300 font-semibold bg-gray-50"
+            isDisabled={true}
+          />
+        ) : (
+          <Button
+            title="-"
+            containerStyles="border-2 text-base font-semibold"
+            handleClick={() => {
+              decrement();
+            }}
+          />
+        )}
+        <div className="border-2 text-base font-semibold py-2 px-4 text-center rounded-md min-w-14">
+          {quantity}
+        </div>
+        {quantity == max || quantity == stock ? (
+          <Button
+            title="+"
+            containerStyles="border-2 text-gray-300 font-semibold bg-gray-50"
+            isDisabled={true}
+          />
+        ) : (
+          <Button
+            title="+"
+            containerStyles="border-2 text-base font-semibold"
+            handleClick={() => {
+              increment();
+            }}
+          />
+        )}
       </div>
     </div>
   );

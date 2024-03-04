@@ -1,7 +1,6 @@
 "use client";
 
 import { ButtonProps } from "@/types";
-import Image from "next/image";
 import Link from "next/link";
 
 const Button = ({
@@ -16,13 +15,10 @@ const Button = ({
 }: ButtonProps) => {
   const buttonContent = (
     <>
-      <span className={`${textStyles}`}>{title}</span>
-      {icon && (
-        <div className="relative">
-          {/* <Image src={icon} alt="arrow_left" fill className="object-contain" /> */}
-          <span className="material-symbols-outlined">{icon}</span>
-        </div>
-      )}
+      <span className={`${textStyles} flex items-center gap-1`}>
+        {icon && <span className="material-symbols-outlined">{icon}</span>}
+        {title}
+      </span>
     </>
   );
 

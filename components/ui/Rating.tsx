@@ -1,6 +1,6 @@
 export const Rating = ({ rating }: { rating: number }) => {
   return (
-    <div className="px-2 py-[0.35rem] bg-lime-600 rounded-md">
+    <div className="px-2 py-[0.35rem] bg-lime-600 rounded-md w-12 flex justify-center">
       <h6 className="flex items-center gap-1 text-white text-xs font-bold justify-center leading-[0]">
         {rating}
         <span

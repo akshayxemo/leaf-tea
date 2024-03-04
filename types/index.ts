@@ -32,7 +32,26 @@ export interface ProductParams {
   overallRating?: number;
 }
 
-export interface cartType {
-  id: string;
+export interface CartParams {
+  _id: string;
+  name: string;
+  price: number;
+  discount?: number;
+  image: string; // Use File type for image input
+  overallRating?: number;
   quantity: number;
+  currentPrice: number;
+  stock: number;
+}
+
+//..................Store.................
+export interface CartItem {
+  id: string;
+  name: string;
+  price: number;
+  quantity: number;
+}
+
+export interface CartState {
+  cartItems: CartItem[];
 }

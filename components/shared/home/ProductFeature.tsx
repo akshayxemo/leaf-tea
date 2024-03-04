@@ -1,5 +1,5 @@
 import { getProducts } from "@/lib/actions/product.action";
-import ProductCard from "../../ui/ProductCard";
+import ProductCard from "../ProductCard";
 import { ProductParams } from "@/types";
 
 const ProductFeature = async () => {
