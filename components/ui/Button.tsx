@@ -12,12 +12,17 @@ const Button = ({
   icon,
   handleClick,
   href,
+  count,
+  notification,
 }: ButtonProps) => {
   const buttonContent = (
     <>
-      <span className={`${textStyles} flex items-center gap-1`}>
+      <span className={`${textStyles} flex items-center gap-1 relative`}>
         {icon && <span className="material-symbols-outlined">{icon}</span>}
         {title}
+        {notification && (
+          <div className="bg-red-500 text-white p-[0.3rem] text-sm rounded-full absolute left-0 top-1 aspect-square animate-pulse"></div>
+        )}
       </span>
     </>
   );
