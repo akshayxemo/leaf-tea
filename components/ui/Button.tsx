@@ -12,7 +12,6 @@ const Button = ({
   icon,
   handleClick,
   href,
-  count,
   notification,
 }: ButtonProps) => {
   const buttonContent = (

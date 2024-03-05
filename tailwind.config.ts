@@ -8,6 +8,9 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      gridTemplateColumns: {
+        gridFlex: "repeat(2, auto)",
+      },
       screens: {
         msm: "560px",
         xsm: "420px",

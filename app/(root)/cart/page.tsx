@@ -65,7 +65,7 @@ const page = () => {
   }
 
   return (
-    <div className="container py-20">
+    <div className="container pb-20 pt-36">
       <div className="text-center mb-4">
         <h1 className="font-serif text-4xl text-dark-600">My Cart</h1>
         <p className="text-body">items that you have selected are here</p>

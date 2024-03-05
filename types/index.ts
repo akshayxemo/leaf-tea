@@ -10,8 +10,14 @@ export interface ButtonProps {
   icon?: string;
   handleClick?: MouseEventHandler<HTMLButtonElement>;
   href?: string;
-  count?: number;
   notification?: boolean;
+}
+
+export interface IconProps {
+  icon: string;
+  fill?: boolean;
+  fontsize?: string;
+  iconClass?: string;
 }
 
 export interface Navlinks {

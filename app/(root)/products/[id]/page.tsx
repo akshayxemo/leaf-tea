@@ -5,14 +5,15 @@ import QuantityBtn from "@/components/ui/QuantityBtn";
 import Button from "@/components/ui/Button";
 import { ProductParams } from "@/types";
 import PriceDiscount from "@/components/ui/PriceDiscount";
+import ProductActionBtn from "@/components/ui/ProductActionBtn";
+import { discountedPrice } from "@/utils";
 
 const Page = async ({ params }: { params: { id: string } }) => {
   const response = await getProductById(params.id);
   const product: ProductParams = JSON.parse(response ? response : "");
-  // console.log(product);
   return (
-    <div className="container flex flex-wrap gap-4 relative max-md:flex-col flex-row max-md:items-center">
-      <div className="px-4 py-12 max-md:pb-0 max-md:w-full max-md:flex max-md:justify-center">
+    <div className="container pb-20 pt-36 flex flex-wrap gap-4 relative max-md:flex-col flex-row max-md:items-center">
+      <div className="px-4 max-md:pb-0 max-md:w-full max-md:flex max-md:justify-center">
         <div className="sticky top-28">
           <Image
             src={product.image}
@@ -21,19 +22,18 @@ const Page = async ({ params }: { params: { id: string } }) => {
             height={500}
             className="rounded-md object-cover"
           />
-          <div className="flex gap-3">
-            <Button
-              title="Buy Now"
-              containerStyles="bg-lime-700 text-light btn-dark-hover flex-1 h-12"
-            />
-            <Button
-              title="Add to Cart"
-              containerStyles="bg-light text-dark-600 btn-light-hover flex-1 h-12"
-            />
-          </div>
+          <ProductActionBtn
+            productId={product._id ? product._id : ""}
+            name={product.name}
+            price={
+              product.discount
+                ? Number(discountedPrice(product.price, product.discount))
+                : product.price
+            }
+          />
         </div>
       </div>
-      <div className="px-4 py-12 flex-1 max-md:w-full">
+      <div className="px-4 flex-1 max-md:w-full">
         <div className="grid grid-cols-5 grid-rows-3">
           {/* ........row-1 */}
           <div className="col-span-4 text-3xl font-bold text-black">
