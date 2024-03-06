@@ -6,15 +6,26 @@ import { useEffect, useState } from "react";
 import { navlinks } from "@/constants";
 import { usePathname } from "next/navigation";
 import { useAppSelector } from "@/redux/store";
+import MenuIcon from "@mui/icons-material/Menu";
+import CloseIcon from "@mui/icons-material/Close";
 
 const Navbar = () => {
   const cartListLen = useAppSelector((item) => item.cart.cartItems.length);
   const [scrollColor, setScrollColor] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const [prevScrollPos, setPrevScrollPos] = useState(0);
+  const [menuOpen, setMenuOpen] = useState(false);
   const path = usePathname();
 
+  const handleMenuOpen = () => {
+    setMenuOpen(!menuOpen);
+  };
+
   useEffect(() => {
+    if (menuOpen) {
+      setMenuOpen(false);
+    }
+
     if (window.scrollY > 400) {
       setScrollColor(true);
     }
@@ -42,7 +53,7 @@ const Navbar = () => {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [prevScrollPos]);
+  }, [prevScrollPos, path]);
   return (
     <header
       className={`${
@@ -57,7 +68,7 @@ const Navbar = () => {
           : "bg-dark-600 border-dark text-light"
       }`}
     >
-      <nav className="container flex flex-1 justify-between">
+      <nav className="container flex flex-1 justify-between items-center">
         <div className="p-1 flex justify-between items-center">
           {/*.................... logo */}
           <Image
@@ -66,17 +77,15 @@ const Navbar = () => {
             width={120}
             height={20}
           />
-          {/* <h1 className="text-2xl py-4 flex items-center gap-1">
-            <span className="material-symbols-outlined">
-              temp_preferences_eco
-            </span>
-            Leaf Tea
-          </h1> */}
         </div>
 
         {/*.................... Navs */}
-        <div className="p-1 divide-x-[0.5px] divide-white/35 flex gap-4 items-center justify-end">
-          <div className="flex gap-6 justify-center items-center last:mr-4">
+        <div
+          className={`p-1 md:divide-x-[0.5px] max-md:divide-y-[0.5px] divide-white/35 flex gap-4 md:items-center md:justify-end max-md:justify-center max-md:flex-col max-md:bg-dark max-md:p-8 max-md:h-screen max-md:absolute top-0 transition-all duration-300 ease-in ${
+            menuOpen ? "right-0" : "-right-52"
+          }`}
+        >
+          <div className="flex gap-6 justify-center items-center last:mr-4 max-md:flex-col max-md:items-start ">
             {navlinks.map((nav) => {
               return (
                 <div key={nav.id}>
@@ -112,6 +121,17 @@ const Navbar = () => {
               <Button title="" icon="account_circle" href="/signup" />
             </div>
           </div>
+        </div>
+
+        {menuOpen && (
+          <div className="max-md:w-screen max-md:absolute bg-black/35 top-0 left-0 md:hidden h-screen -z-[1] overflow-hidden"></div>
+        )}
+
+        <div
+          onClick={handleMenuOpen}
+          className={`cursor-pointer md:hidden relative z-50 transition-all duration-200 ease-in`}
+        >
+          {menuOpen ? <CloseIcon /> : <MenuIcon />}
         </div>
       </nav>
     </header>

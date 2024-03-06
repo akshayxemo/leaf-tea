@@ -14,7 +14,7 @@ const Page = async ({ params }: { params: { id: string } }) => {
   return (
     <div className="container pb-20 pt-36 flex flex-wrap gap-4 relative max-md:flex-col flex-row max-md:items-center">
       <div className="px-4 max-md:pb-0 max-md:w-full max-md:flex max-md:justify-center">
-        <div className="sticky top-28">
+        <div className="sticky top-28 mb-4">
           <Image
             src={product.image}
             alt="product-image"
@@ -39,7 +39,7 @@ const Page = async ({ params }: { params: { id: string } }) => {
           <div className="col-span-4 text-3xl font-bold text-black">
             {product.name}
           </div>
-          <div className="col-span-1 flex items-center justify-center flex-nowrap gap-2">
+          <div className="col-span-1 flex items-center justify-end flex-nowrap gap-2">
             <span
               className="material-symbols-outlined bg-gray-100 text-gray-500 rounded-full p-2 aspect-square cursor-pointer"
               style={{ fontVariationSettings: `"FILL" 1` }}
