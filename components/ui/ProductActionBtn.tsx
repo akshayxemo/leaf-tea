@@ -21,7 +21,7 @@ const ProductActionBtn = ({
     <div className="flex gap-3">
       <Button
         title="Buy Now"
-        containerStyles="bg-dark-600 text-light btn-dark-hover flex-1 h-12"
+        containerStyles="bg-lime-700 text-light btn-dark-hover flex-1 h-12"
       />
       {cartItems.some((item) => item.id == productId) ? (
         <Button

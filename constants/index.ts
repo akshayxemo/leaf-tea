@@ -7,12 +7,18 @@ export const navlinks = [
   },
   {
     id: 1,
+    title: "About",
+    icon: "group",
+    link: "/about",
+  },
+  {
+    id: 2,
     title: "Shop",
     icon: "storefront",
     link: "/shop",
   },
   {
-    id: 2,
+    id: 3,
     title: "Contact Us",
     icon: "phone_in_talk",
     link: "/contact",
