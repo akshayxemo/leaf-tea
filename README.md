@@ -1,7 +1,16 @@
-![FireShot Capture 014 - Leaf Tea - localhost](https://github.com/akshayxemo/leaf-tea/assets/83893825/4ce1a277-00ca-478d-9dac-7ca4b29713ea)
+## Tea-Leaf
+A responsive and dynamic end to end tea shop application using Next14.js, Typescript, Tailwind Css, MongoDB.
+
+![FireShot Capture 019 - Leaf Tea - localhost](https://github.com/akshayxemo/leaf-tea/assets/83893825/2df7897d-58b7-4dd0-91c7-da80f586dbd0)
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
+
+initialization
+
+```bash
+npm install
+```
 
 First, run the development server:
 
