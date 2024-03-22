@@ -1,10 +1,14 @@
-import { getProducts } from "@/lib/actions/product.action";
+// import { getProducts } from "@/lib/actions/product.action";
 import ProductCard from "../ProductCard";
 import { ProductParams } from "@/types";
 
 const ProductFeature = async () => {
-  const response = await getProducts();
-  const products = JSON.parse(response as string);
+  // const response = await getProducts();
+  // const products = JSON.parse(response as string);
+  const URI = `${process.env.NEXT_PUBLIC_SERVER_ORIGIN}/products`;
+  const response = await fetch(URI);
+  const products = await response.json();
+
   // console.log(products);
   return (
     <div className="container py-24">

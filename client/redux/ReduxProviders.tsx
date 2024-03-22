@@ -5,7 +5,6 @@ import { PersistGate } from "redux-persist/integration/react";
 import { store, persistor } from "@/redux/store";
 
 const ReduxProvider = ({ children }: { children: React.ReactNode }) => {
-  console.log("I am rider provider");
   return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>

@@ -1,16 +1,19 @@
 import { Rates, Rating, RatingAndReviews } from "@/components/ui/Rating";
-import { getProductById } from "@/lib/actions/product.action";
+// import { getProductById } from "@/lib/actions/product.action";
 import Image from "next/image";
-import QuantityBtn from "@/components/ui/QuantityBtn";
-import Button from "@/components/ui/Button";
 import { ProductParams } from "@/types";
 import PriceDiscount from "@/components/ui/PriceDiscount";
 import ProductActionBtn from "@/components/ui/ProductActionBtn";
 import { discountedPrice } from "@/utils";
+import { useEffect, useState } from "react";
 
 const Page = async ({ params }: { params: { id: string } }) => {
-  const response = await getProductById(params.id);
-  const product: ProductParams = JSON.parse(response ? response : "");
+  // const response = await getProductById(params.id);
+  // const product: ProductParams = JSON.parse(response ? response : "");
+  const URI = `${process.env.NEXT_PUBLIC_SERVER_ORIGIN}/product/${params.id}`;
+  const response = await fetch(URI);
+  const product: ProductParams = await response.json();
+
   return (
     <div className="container pb-20 pt-36 flex flex-wrap gap-4 relative max-md:flex-col flex-row max-md:items-center">
       <div className="px-4 max-md:pb-0 max-md:w-full max-md:flex max-md:justify-center">
