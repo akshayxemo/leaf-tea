@@ -28,10 +28,10 @@ const ProductCard = ({
       price: Number(discountedPrice(price, discount)),
     };
   }
-  console.log(item);
+  // console.log(item);
   const cartItems = useAppSelector((state) => state.cart.cartItems);
   const dispatch = useAppDispatch();
-  console.log("Cart: ", cartItems);
+  // console.log("Cart: ", cartItems);
 
   return (
     <div className="p-4 max-w-64">

@@ -29,5 +29,22 @@ module.exports = {
         return res.status(400).json({ error: error });
       }
     },
+    TopProducts: async (req, res) => {
+      try {
+        const top = req.query.top;
+        console.log(req.query);
+        const topRatedProducts = await Product.find()
+          .sort({ overallRating: -1 })
+          .limit(Number(top));
+
+        const products = topRatedProducts.map((product) => {
+          return { ...product._doc, image: AddBase64Unit(product.image) };
+        });
+        // console.log(products);
+        return res.status(200).json(products);
+      } catch (error) {
+        return res.status(400).json({ error: error });
+      }
+    },
   },
 };

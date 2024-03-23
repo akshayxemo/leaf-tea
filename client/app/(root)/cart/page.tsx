@@ -3,9 +3,10 @@ import CartItem from "@/components/shared/CartItem";
 import TotalCartPriceBar from "@/components/shared/TotalCartPriceBar";
 import { getProductById } from "@/lib/actions/product.action";
 import { useAppSelector } from "@/redux/store";
-import { CartParams } from "@/types";
+import { CartParams, ProductParams } from "@/types";
 import { discountedPrice } from "@/utils";
 import { useEffect, useState } from "react";
+import axios from "axios";
 
 const page = () => {
   const cartItem = useAppSelector((state) => state.cart.cartItems);
@@ -48,8 +49,14 @@ const page = () => {
     currentPrice: number
   ) {
     try {
-      const response = await getProductById(id);
-      const product = JSON.parse(response ? response : "");
+      // const response = await getProductById(id);
+      // const product = JSON.parse(response ? response : "");
+      //URL construction
+      const URL = `${process.env.NEXT_PUBLIC_SERVER_ORIGIN}/product/${id}`;
+      // API call
+      const response = await axios.get(URL);
+      const product = await response.data;
+
       let price = 0;
       if (product.discount) {
         price = Number(discountedPrice(product.price, product.discount));

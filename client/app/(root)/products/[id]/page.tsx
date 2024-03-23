@@ -1,18 +1,20 @@
 import { Rates, Rating, RatingAndReviews } from "@/components/ui/Rating";
-// import { getProductById } from "@/lib/actions/product.action";
 import Image from "next/image";
 import { ProductParams } from "@/types";
 import PriceDiscount from "@/components/ui/PriceDiscount";
 import ProductActionBtn from "@/components/ui/ProductActionBtn";
 import { discountedPrice } from "@/utils";
-import { useEffect, useState } from "react";
+import axios from "axios";
 
 const Page = async ({ params }: { params: { id: string } }) => {
   // const response = await getProductById(params.id);
   // const product: ProductParams = JSON.parse(response ? response : "");
-  const URI = `${process.env.NEXT_PUBLIC_SERVER_ORIGIN}/product/${params.id}`;
-  const response = await fetch(URI);
-  const product: ProductParams = await response.json();
+
+  //URL construction
+  const URL = `${process.env.NEXT_PUBLIC_SERVER_ORIGIN}/product/${params.id}`;
+  // API call
+  const response = await axios.get(URL);
+  const product: ProductParams = await response.data;
 
   return (
     <div className="container pb-20 pt-36 flex flex-wrap gap-4 relative max-md:flex-col flex-row max-md:items-center">
