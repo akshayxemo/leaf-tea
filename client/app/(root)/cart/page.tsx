@@ -57,7 +57,7 @@ const page = () => {
       const response = await axios.get(URL);
       const product = await response.data;
 
-      let price = 0;
+      let price = currentPrice;
       if (product.discount) {
         price = Number(discountedPrice(product.price, product.discount));
       }

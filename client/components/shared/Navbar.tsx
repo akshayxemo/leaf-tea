@@ -8,6 +8,8 @@ import { usePathname } from "next/navigation";
 import { useAppSelector } from "@/redux/store";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
+import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
+import Badge from "@mui/material/Badge";
 
 const Navbar = () => {
   const cartListLen = useAppSelector((item) => item.cart.cartItems.length);
@@ -85,10 +87,10 @@ const Navbar = () => {
             menuOpen ? "right-0" : "-right-52"
           }`}
         >
-          <div className="flex gap-6 justify-center items-center last:mr-4 max-md:flex-col max-md:items-start ">
+          <div className="flex gap-6 justify-center items-center max-md:flex-col max-md:items-start">
             {navlinks.map((nav) => {
               return (
-                <div key={nav.id}>
+                <div key={nav.id} className="last:mr-2">
                   <Link
                     href={nav.link}
                     className="grid grid-cols-gridFlex grid-rows-1 group gap-2"
@@ -110,12 +112,17 @@ const Navbar = () => {
           {/*.................... Signp & Cart */}
           <div className="p-2 flex items-center">
             <div>
-              <Button
+              {/* <Button
                 title=""
                 icon="shopping_bag"
                 href="/cart"
                 notification={cartListLen > 0 ? true : false}
-              />
+              /> */}
+              <Link href={"/cart"} className="px-4">
+                <Badge badgeContent={cartListLen} color="error">
+                  <ShoppingBagOutlinedIcon />
+                </Badge>
+              </Link>
             </div>
             <div>
               <Button title="" icon="account_circle" href="/signup" />

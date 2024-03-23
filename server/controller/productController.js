@@ -17,7 +17,7 @@ module.exports = {
     },
     ByID: async (req, res) => {
       try {
-        console.log("hit");
+        // console.log("hit");
         const id = req.params.id;
         const response = await Product.findById(id);
         const product = {
@@ -32,7 +32,7 @@ module.exports = {
     TopProducts: async (req, res) => {
       try {
         const top = req.query.top;
-        console.log(req.query);
+        // console.log(req.query);
         const topRatedProducts = await Product.find()
           .sort({ overallRating: -1 })
           .limit(Number(top));

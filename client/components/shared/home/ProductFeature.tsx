@@ -15,7 +15,7 @@ const ProductFeature = async () => {
   // action based on result
   if (response.status == 200) {
     const products = await response.data;
-    console.log(products);
+    // console.log(products);
     return (
       <div className="container py-24">
         <h1 className="text-center text-4xl font-serif text-dark-600">
