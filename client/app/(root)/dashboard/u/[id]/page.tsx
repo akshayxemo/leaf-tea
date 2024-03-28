@@ -5,7 +5,15 @@ import SettingsIcon from "@mui/icons-material/Settings";
 import FactCheckOutlinedIcon from "@mui/icons-material/FactCheckOutlined";
 import QuestionAnswerOutlinedIcon from "@mui/icons-material/QuestionAnswerOutlined";
 import { styled } from "@mui/material/styles";
+import dynamic from "next/dynamic";
+import Settings from "@/components/shared/user/Settings";
 import { useState } from "react";
+import Button from "@/components/ui/Button";
+import { signIn } from "next-auth/react";
+
+const Orders = dynamic(() => import("@/components/shared/user/Orders"), {
+  loading: () => <p>Loading...</p>,
+});
 
 const AntTabs = styled(Tabs)({
   "& .MuiTabs-indicator": {
@@ -87,14 +95,20 @@ const dashboard = ({ params }: { params: { id: string } }) => {
         </AntTabs>
       </div>
       <TabPanel value={value} index={0}>
-        Item One
+        <Settings />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        Item Two
+        <Orders />
       </TabPanel>
       <TabPanel value={value} index={2}>
         Item Three
       </TabPanel>
+      <Button
+        title="Login"
+        handleClick={() => {
+          signIn();
+        }}
+      />
     </div>
   );
 };
