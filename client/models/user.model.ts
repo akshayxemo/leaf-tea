@@ -8,6 +8,8 @@ const UserSchema = new Schema(
     address: String,
     phoneNo: String,
     pinCode: String,
+    role: { type: String, enum: ["Admin", "User"], default: "User" },
+    imageURL: String,
   },
   {
     timestamps: true,

@@ -1,11 +1,7 @@
+import Image from "next/image";
+
 const layout = ({ children }: { children: React.ReactNode }) => {
-  return (
-    <div className="container">
-      <div className="h-screen flex justify-center items-center gap-3">
-        {children}
-      </div>
-    </div>
-  );
+  return <div className="min-h-screen w-full">{children}</div>;
 };
 
 export default layout;

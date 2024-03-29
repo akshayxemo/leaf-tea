@@ -10,6 +10,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
 import Badge from "@mui/material/Badge";
+import AccountSettings from "./auth/AccountSettings";
 
 const Navbar = () => {
   const cartListLen = useAppSelector((item) => item.cart.cartItems.length);
@@ -56,6 +57,7 @@ const Navbar = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, [prevScrollPos, path]);
+
   return (
     <header
       className={`${
@@ -110,23 +112,16 @@ const Navbar = () => {
             })}
           </div>
           {/*.................... Signp & Cart */}
-          <div className="p-2 flex items-center">
+          <div className="p-2 flex items-center gap-4 max-md:pt-4">
             <div>
-              {/* <Button
-                title=""
-                icon="shopping_bag"
-                href="/cart"
-                notification={cartListLen > 0 ? true : false}
-              /> */}
               <Link href={"/cart"} className="px-4">
                 <Badge badgeContent={cartListLen} color="error">
                   <ShoppingBagOutlinedIcon />
                 </Badge>
               </Link>
             </div>
-            <div>
-              <Button title="" icon="account_circle" href="/signup" />
-            </div>
+
+            <AccountSettings />
           </div>
         </div>
 

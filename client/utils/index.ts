@@ -18,3 +18,9 @@ export const discountedPrice = (p: number, d: number) => {
   const priceWithDiscount = (p - discountPrice).toFixed(2);
   return priceWithDiscount;
 };
+
+export const getInitials = (value: string) => {
+  const words = value.split(" ");
+  const initials = words.map((word) => word.charAt(0).toUpperCase());
+  return initials.join("");
+};

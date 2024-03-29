@@ -9,8 +9,9 @@ import FormControl from "@mui/material/FormControl";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { useState } from "react";
-import Button from "@/components/ui/Button";
 import { signIn } from "next-auth/react";
+import LoadingButton from "@mui/lab/LoadingButton";
+import Link from "next/link";
 
 interface LoginForm {
   email: string;
@@ -18,14 +19,16 @@ interface LoginForm {
 }
 
 const SignInForm = () => {
+  const initialData = {
+    email: "",
+    password: "",
+  };
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState(false);
   const [emptyEmail, setEmptyEmail] = useState(false);
   const [emptyPassword, setEmptyPassword] = useState(false);
-  const [formData, setFormData] = useState<LoginForm>({
-    email: "",
-    password: "",
-  });
+  const [formData, setFormData] = useState<LoginForm>(initialData);
+  const [loading, setLoading] = useState(false);
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -53,14 +56,23 @@ const SignInForm = () => {
   };
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setLoading(true);
+    setError(false);
+
     if (validate()) {
       const res = await signIn("credentials", {
         email: formData.email,
         password: formData.password,
-        redirect: false,
+        redirect: true,
+        callbackUrl: "/",
       });
+      setFormData(initialData);
+      if (res?.error) {
+        setError(true);
+      }
       console.log("Submitted...", res);
     }
+    setLoading(false);
   };
 
   return (
@@ -103,11 +115,33 @@ const SignInForm = () => {
       {emptyPassword && (
         <FormHelperText error>Password is required</FormHelperText>
       )}
-      <Button
-        title="Login"
-        btnType="submit"
-        containerStyles="bg-orange-500 text-white"
-      />
+      <LoadingButton
+        size="small"
+        type="submit"
+        loading={loading}
+        loadingPosition="end"
+        variant="contained"
+        sx={{
+          padding: "1rem 1rem",
+          backgroundColor: "rgb(54 83 20)",
+          ":hover": { backgroundColor: "rgb(77 124 15)" },
+        }}
+      >
+        <span>Login</span>
+      </LoadingButton>
+      <div>
+        Dont have any account ?{" "}
+        <Link
+          href={"/signup"}
+          className="text-blue-700 hover:underline hover:text-blue-500"
+        >
+          Register here
+        </Link>
+      </div>
+
+      {error && (
+        <p className="text-center text-red-600">Invalid email or password</p>
+      )}
     </form>
   );
 };

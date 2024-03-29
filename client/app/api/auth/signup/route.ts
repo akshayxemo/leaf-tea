@@ -12,10 +12,7 @@ export async function POST(req: NextRequest) {
     const existingUser = await User.findOne({ email: email });
 
     if (existingUser) {
-      return NextResponse.json(
-        { error: "User already exists" },
-        { status: 400 }
-      );
+      throw new Error("User Already Exist.");
     }
 
     const salt = await bcryptjs.genSalt(10);
@@ -24,7 +21,7 @@ export async function POST(req: NextRequest) {
     const newUser = new User({
       name: name,
       email: email,
-      Password: hashedPassword,
+      password: hashedPassword,
       //   address: address,
       phoneNo: phoneNo,
     });
@@ -39,7 +36,7 @@ export async function POST(req: NextRequest) {
       },
       { status: 200 }
     );
-  } catch (error) {
-    return NextResponse.json({ error: error }, { status: 400 });
+  } catch (err: any) {
+    return NextResponse.json({ error: err.message }, { status: 400 });
   }
 }

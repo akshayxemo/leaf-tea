@@ -1,4 +1,4 @@
-import SignInForm from "@/components/shared/auth/SignInForm";
+import SignUpForm from "@/components/shared/auth/SignUpForm";
 import ArrowBackOutlinedIcon from "@mui/icons-material/ArrowBackOutlined";
 import Link from "next/link";
 
@@ -14,14 +14,14 @@ const page = () => {
         </div>
         <span>Home</span>
       </Link>
-      <div className="w-96 p-4 flex flex-col gap-4 rounded-md border bg-white shadow-xl">
-        <h1 className="text-4xl font-serif text-center text-orange-700">
-          Login
-        </h1>
+      <div className="w-96 p-4 flex flex-col gap-2 rounded-md border bg-white shadow-xl">
         <p className="tracking-widest uppercase text-center text-sm">
-          Welcome Back
+          New Here !
         </p>
-        <SignInForm />
+        <h1 className="text-4xl font-serif text-center text-lime-700 mb-3">
+          Register Now
+        </h1>
+        <SignUpForm />
       </div>
     </div>
   );
