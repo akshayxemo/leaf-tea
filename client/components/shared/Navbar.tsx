@@ -67,7 +67,7 @@ const Navbar = () => {
           ? `fixed ${
               scrollColor
                 ? "bg-dark-600 border-dark text-light"
-                : "border-white/35 text-white backdrop-blur"
+                : "border-white/35 text-gray-100 backdrop-blur"
             }`
           : "bg-dark-600 border-dark text-light"
       }`}

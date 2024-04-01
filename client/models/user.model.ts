@@ -2,6 +2,7 @@ import { Schema, model, models } from "mongoose";
 
 const UserSchema = new Schema(
   {
+    OAuthId: String,
     name: String,
     email: { type: String, unique: true },
     password: String,

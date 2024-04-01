@@ -8,10 +8,14 @@ import FormHelperText from "@mui/material/FormHelperText";
 import FormControl from "@mui/material/FormControl";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import ArrowForwardOutlinedIcon from "@mui/icons-material/ArrowForwardOutlined";
+import Divider from "@mui/material/Divider";
+
 import { useState } from "react";
 import { signIn } from "next-auth/react";
 import LoadingButton from "@mui/lab/LoadingButton";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 
 interface LoginForm {
   email: string;
@@ -23,8 +27,13 @@ const SignInForm = () => {
     email: "",
     password: "",
   };
+
+  const searchParams = useSearchParams();
+  const callBackUrl = searchParams.get("callbackUrl");
+  const errorMsg = searchParams.get("error");
+
   const [showPassword, setShowPassword] = useState(false);
-  const [error, setError] = useState(false);
+  // const [error, setError] = useState(false);
   const [emptyEmail, setEmptyEmail] = useState(false);
   const [emptyPassword, setEmptyPassword] = useState(false);
   const [formData, setFormData] = useState<LoginForm>(initialData);
@@ -57,19 +66,19 @@ const SignInForm = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
-    setError(false);
+    // setError(false);
 
     if (validate()) {
       const res = await signIn("credentials", {
         email: formData.email,
         password: formData.password,
         redirect: true,
-        callbackUrl: "/",
+        callbackUrl: callBackUrl ? callBackUrl : "/",
       });
       setFormData(initialData);
-      if (res?.error) {
-        setError(true);
-      }
+      // if (res?.error) {
+      //   setError(true);
+      // }
       console.log("Submitted...", res);
     }
     setLoading(false);
@@ -118,6 +127,7 @@ const SignInForm = () => {
       <LoadingButton
         size="small"
         type="submit"
+        endIcon={<ArrowForwardOutlinedIcon />}
         loading={loading}
         loadingPosition="end"
         variant="contained"
@@ -129,6 +139,23 @@ const SignInForm = () => {
       >
         <span>Login</span>
       </LoadingButton>
+
+      <Divider>Or</Divider>
+      <button
+        type="button"
+        className="p-4 rounded-md border border-gray-300 flex flex-row flex-nowrap items-center justify-center gap-4 hover:shadow-md bg-white"
+        onClick={() => {
+          signIn("google");
+        }}
+      >
+        <img
+          src="/icons/icons8-google.svg"
+          alt="Google Icon"
+          className="aspect-square h-6"
+        />
+        Login with Google
+      </button>
+
       <div>
         Dont have any account ?{" "}
         <Link
@@ -139,9 +166,7 @@ const SignInForm = () => {
         </Link>
       </div>
 
-      {error && (
-        <p className="text-center text-red-600">Invalid email or password</p>
-      )}
+      {errorMsg && <p className="text-center text-red-600">{errorMsg}</p>}
     </form>
   );
 };

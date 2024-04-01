@@ -3,12 +3,11 @@ import { connnectToDB } from "@/lib/database/dbConnection";
 import { NextRequest, NextResponse } from "next/server";
 import bcryptjs from "bcryptjs";
 
-connnectToDB();
-
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
     const { name, email, password, phoneNo } = body;
+    await connnectToDB();
     const existingUser = await User.findOne({ email: email });
 
     if (existingUser) {
@@ -22,7 +21,6 @@ export async function POST(req: NextRequest) {
       name: name,
       email: email,
       password: hashedPassword,
-      //   address: address,
       phoneNo: phoneNo,
     });
 

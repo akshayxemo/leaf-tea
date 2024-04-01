@@ -15,6 +15,7 @@ const Page = async ({ params }: { params: { id: string } }) => {
   // API call
   const response = await axios.get(URL);
   const product: ProductParams = await response.data;
+  console.log(".........inDashboard............");
 
   return (
     <div className="container pb-20 pt-36 flex flex-wrap gap-4 relative max-md:flex-col flex-row max-md:items-center">

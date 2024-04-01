@@ -6,29 +6,29 @@ import Avatar from "@mui/material/Avatar";
 import Tooltip from "@mui/material/Tooltip";
 import SpaceDashboardOutlinedIcon from "@mui/icons-material/SpaceDashboardOutlined";
 import ExitToAppOutlinedIcon from "@mui/icons-material/ExitToAppOutlined";
-import { deepOrange, purple } from "@mui/material/colors";
+import { purple } from "@mui/material/colors";
 
 import { signOut } from "next-auth/react";
 import { useSession } from "next-auth/react";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import Button from "@/components/ui/Button";
-import { getInitials } from "@/utils";
+import { usePathname } from "next/navigation";
 
 const AccountSettings = () => {
   const { data: Session } = useSession({
     required: false,
   });
 
+  const pathname = usePathname();
+  console.log("path:", pathname);
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
 
-  useEffect(() => {
-    console.log("Session :", Session);
-  }, []);
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElUser(event.currentTarget);
   };
@@ -36,9 +36,9 @@ const AccountSettings = () => {
   const handleLogOut = async () => {
     await signOut();
   };
+
   return (
     <div>
-      {/* <Button title="" icon="account_circle" href="/signup" /> */}
       <Tooltip title="Account Settings">
         <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
           {Session ? (
@@ -46,6 +46,7 @@ const AccountSettings = () => {
               alt={Session.user?.name ? Session.user.name : ""}
               src={Session.user?.image ? Session.user.image : ""}
               sx={{ width: "30px", height: "30px", bgcolor: purple[400] }}
+              className="border border-purple-300"
             >
               {Session.user?.name && Session.user.name.charAt(0).toUpperCase()}
             </Avatar>
@@ -81,7 +82,9 @@ const AccountSettings = () => {
             <Divider component="li" />
             <div className="flex flex-col gap-3 py-3">
               <Link
-                href={`/dashboard/u/${Session.user?.id}`}
+                href={`/dashboard/${
+                  Session.user?.role === "Admin" ? "a" : "u"
+                }/${Session.user?.id}`}
                 className=" flex items-center w-full justify-start gap-2 hover:font-semibold hover:text-lime-700 cursor-pointer"
                 onClick={handleCloseUserMenu}
               >
@@ -102,7 +105,7 @@ const AccountSettings = () => {
             <Button
               title="Sign in"
               containerStyles="bg-gray-100 w-full"
-              href="/signin"
+              href={`/signin?callbackUrl=${pathname}`}
             />
           </div>
         )}
